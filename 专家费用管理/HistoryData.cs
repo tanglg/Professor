@@ -20,6 +20,14 @@ namespace 专家费用管理
             InitHistoryData();
             YearList = GetExistYearList();
         }
+        public void Export()
+        {
+            var save = new SaveFileDialog();
+            save.Filter = "Excel(2007或更高)|*.xlsx";
+            save.FileName = DateTime.Today.ToString("yyyyMMdd")+"导出文件";
+            if (save.ShowDialog() != DialogResult.OK) return;
+            spreadsheetControl1.Document.SaveDocument(save.FileName, DevExpress.Spreadsheet.DocumentFormat.Xlsx);
+        }
         public void SearchData(string year, string month)
         {
             var count = ExcelCommonFunction.GetLastUsedRowIndex(spreadsheetControl1.ActiveWorksheet);

@@ -50,8 +50,9 @@ namespace 专家费用管理
             math.NextMatch();
             month = Convert.ToInt32(math.NextMatch().Groups [1].Value);
         }
-        public void Save()
+        public List<Professor> Save()
         {
+
             spreadsheetControl1.CloseCellEditor(CellEditorEnterValueMode.ActiveCell);
 
             var count = ExcelCommonFunction.GetLastUsedRowIndex(spreadsheetControl1.ActiveWorksheet);
@@ -65,8 +66,8 @@ namespace 专家费用管理
             {
                 workbook.LoadDocument(stream, DocumentFormat.OpenXml);
             }
-            
 
+            List<Professor> newProfessorList = new List<Professor>();
             for (int rowIndex =count ; rowIndex >=_startRowIndex; rowIndex--)
             {
                 workbook.Worksheets[0].Rows.Insert(2);
@@ -84,13 +85,25 @@ namespace 专家费用管理
                 workbook.Worksheets[0].Cells[2, 5].SetValueFromText(year.ToString());
                 //月
                 workbook.Worksheets[0].Cells[2, 6].SetValueFromText(month.ToString());
+
+                if (UI.Professors.Any(o => o.CardNumber.Trim().ToUpper() != spreadsheetControl1.ActiveWorksheet.GetCellValue(0, rowIndex).ToString().Trim().ToUpper()))
+                {
+                    var fo = new Professor();
+                    fo.CardNumber = spreadsheetControl1.ActiveWorksheet.GetCellValue(0, rowIndex).ToString();
+                    fo.Name = spreadsheetControl1.ActiveWorksheet.GetCellValue(1, rowIndex).ToString();
+                    fo.PhoneNumber = spreadsheetControl1.ActiveWorksheet.GetCellValue(2, rowIndex).ToString();
+
+                    newProfessorList.Add(fo);
+                }
             }
 
             workbook.SaveDocument(UI.HistoryFilePath,DocumentFormat.Xlsx);
 
             RefreshData();
-            
+
+            return newProfessorList;
         }
+        
         public void RefreshData()
         {
             for (int rowIndex = ExcelCommonFunction.GetLastUsedRowIndex(spreadsheetControl1.ActiveWorksheet); rowIndex >= _startRowIndex; rowIndex--)

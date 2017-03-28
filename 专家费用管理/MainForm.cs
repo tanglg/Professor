@@ -54,9 +54,12 @@ namespace 专家费用管理
             }
             else if (tabPane1.SelectedPage.Name == "tabNavigationPage1")
             {
-                register1.Save();
+                var newProfessor = register1.Save();
                 historyData1.RefreshData();
-                professorDatabase1.RefreshData();
+                if (newProfessor.Count > 0)
+                {
+                    professorDatabase1.InsertData(newProfessor);
+                }
             }
             
         }
@@ -73,7 +76,10 @@ namespace 专家费用管理
 
         private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {//导出到excel
-
+            if (tabPane1.SelectedPage.Name == "tabNavigationPage2")
+            {
+                historyData1.Export();
+            }
         }
 
         private void barButtonItem5_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

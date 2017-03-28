@@ -21,6 +21,17 @@ namespace 专家费用管理
 
             ExtractProfessorData();
         }
+        public void InsertData(List<Professor> foList)
+        {
+            foreach (var fo in foList)
+            {
+                spreadsheetControl1.ActiveWorksheet.Rows.Insert(2);
+                spreadsheetControl1.ActiveWorksheet.Cells[2,0].SetValueFromText(fo.CardNumber );
+                spreadsheetControl1.ActiveWorksheet.Cells[2, 1].SetValueFromText(fo.Name);
+                spreadsheetControl1.ActiveWorksheet.Cells[2, 2].SetValueFromText(fo.PhoneNumber);
+            }
+            spreadsheetControl1.SaveDocument(UI.ProfessorFilePath, DevExpress.Spreadsheet.DocumentFormat.Xlsx);
+        }
         public void RefreshData()
         {
             InitProfessorData();
@@ -47,9 +58,9 @@ namespace 专家费用管理
             for (int rowIndex = 2; rowIndex < count; rowIndex++)
             {
                 var professor = new Professor();
-                professor.Name = spreadsheetControl1.ActiveWorksheet.GetCellValue(0, rowIndex).ToString( );
-                professor.PhoneNumber= spreadsheetControl1.ActiveWorksheet.GetCellValue(1, rowIndex).ToString( );
-                professor.CardNumber = spreadsheetControl1.ActiveWorksheet.GetCellValue(2, rowIndex).ToString();
+                professor.Name = spreadsheetControl1.ActiveWorksheet.GetCellValue(1, rowIndex).ToString( );
+                professor.PhoneNumber= spreadsheetControl1.ActiveWorksheet.GetCellValue(2, rowIndex).ToString( );
+                professor.CardNumber = spreadsheetControl1.ActiveWorksheet.GetCellValue(0, rowIndex).ToString();
                 UI.Professors.Add(professor);
             }
         }
