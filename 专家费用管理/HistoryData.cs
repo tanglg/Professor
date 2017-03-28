@@ -31,7 +31,7 @@ namespace 专家费用管理
 
         private void HistoryData_Load(object sender, EventArgs e)
         {
-            //InitHistoryData();
+            InitHistoryData();
         }
     }
 }
