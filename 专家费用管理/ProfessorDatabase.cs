@@ -21,16 +21,19 @@ namespace 专家费用管理
 
             ExtractProfessorData();
         }
+        public void RefreshData()
+        {
+            InitProfessorData();
+        }
         private void InitProfessorData()
         {
-            var filePath = Path.Combine(Application.StartupPath,"专家库.xlsx");
-            if (File.Exists(filePath))
+            if (File.Exists(UI.ProfessorFilePath))
             {
-                spreadsheetControl1.LoadDocument(filePath);
+                spreadsheetControl1.LoadDocument(UI.ProfessorFilePath);
             }
             else
             {
-                throw new Exception(string.Format("专家库文件丢失：{0}",filePath));
+                throw new Exception(string.Format("专家库文件丢失：{0}", UI.ProfessorFilePath));
             }
         }
 
