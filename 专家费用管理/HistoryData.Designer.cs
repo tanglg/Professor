@@ -48,7 +48,6 @@
             this.Controls.Add(this.spreadsheetControl1);
             this.Name = "HistoryData";
             this.Size = new System.Drawing.Size(1018, 634);
-            this.Load += new System.EventHandler(this.HistoryData_Load);
             this.ResumeLayout(false);
 
         }

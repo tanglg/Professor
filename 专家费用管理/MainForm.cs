@@ -169,5 +169,17 @@ namespace 专家费用管理
                 System.Diagnostics.Process.Start(filePath);
             }
         }
+
+        private void barButtonItem13_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {//菜单-编辑-资源目录
+            try
+            {
+                System.Diagnostics.Process.Start(UI.ResourceFolder);
+            }
+            catch (Exception ex)
+            {
+                new WinformCommon.ErrorForm(ex.Message, ex.StackTrace).ShowDialog();
+            }
+        }
     }
 }

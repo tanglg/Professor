@@ -48,7 +48,6 @@
             this.Controls.Add(this.spreadsheetControl1);
             this.Name = "ProfessorDatabase";
             this.Size = new System.Drawing.Size(665, 556);
-            this.Load += new System.EventHandler(this.ProfessorDatabase_Load);
             this.ResumeLayout(false);
 
         }

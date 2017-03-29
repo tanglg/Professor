@@ -51,10 +51,6 @@ namespace 专家费用管理
             }
         }
 
-        private void ProfessorDatabase_Load(object sender, EventArgs e)
-        {
-            
-        }
         private void ExtractProfessorData()
         {
             int count = ExcelCommonFunction.GetLastUsedRowIndex(spreadsheetControl1.ActiveWorksheet);

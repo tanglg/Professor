@@ -29,10 +29,9 @@ namespace 专家费用管理
         }
         private void InitRegisterTemplate()
         {
-            var filePath = Path.Combine(Application.StartupPath, "登记模板.xlsx");
-            if (File.Exists(filePath))
+            if (File.Exists(UI.RegisterTemplateFilePath))
             {
-                spreadsheetControl1.LoadDocument(filePath);
+                spreadsheetControl1.LoadDocument(UI.RegisterTemplateFilePath);
                 spreadsheetControl1.Document.Worksheets[0].Cells[1, 0].SetValueFromText(DateTime.Today.ToString("yyyy年MM月"));
             }
             else
@@ -54,7 +53,6 @@ namespace 专家费用管理
         }
         public List<Professor> Save()
         {
-
             spreadsheetControl1.CloseCellEditor(CellEditorEnterValueMode.ActiveCell);
 
             var count = ExcelCommonFunction.GetLastUsedRowIndex(spreadsheetControl1.ActiveWorksheet);

@@ -13,7 +13,7 @@ namespace 专家费用管理
 {
     public partial class HistoryData : UserControl
     {
-        public List<int> YearList = null;
+        public List<int> YearList = new List<int> ();
         public HistoryData()
         {
             InitializeComponent();
@@ -45,12 +45,9 @@ namespace 专家费用管理
         public void RefreshData()
         {
             InitHistoryData();
-
-            YearList = GetExistYearList();
         }
         private void InitHistoryData()
         {
-            
             if (File.Exists(UI.HistoryFilePath))
             {
                 spreadsheetControl1.LoadDocument(UI.HistoryFilePath);
@@ -59,11 +56,6 @@ namespace 专家费用管理
             {
                 throw new Exception("历史数据文件丢失");
             }
-        }
-
-        private void HistoryData_Load(object sender, EventArgs e)
-        {
-            
         }
         public List<int> GetExistYearList()
         {
