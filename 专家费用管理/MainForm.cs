@@ -15,17 +15,18 @@ namespace 专家费用管理
         {
             InitializeComponent();
         }
-
-        private void tabPane1_SelectedPageChanging(object sender, DevExpress.XtraBars.Navigation.SelectedPageChangingEventArgs e)
-        {
-            
-        }
-
         private void MainForm_Load(object sender, EventArgs e)
         {
-            InitMonthFilter();
-            InitYearFilter();
-            tabPane1.SelectedPage = tabNavigationPage1;
+            try
+            {
+                InitMonthFilter();
+                InitYearFilter();
+                tabPane1.SelectedPage = tabNavigationPage1;
+            }
+            catch (Exception ex)
+            {
+                new WinformCommon.ErrorForm(ex.Message, ex.StackTrace).ShowDialog();
+            }
         }
         private void InitYearFilter()
         {
@@ -46,27 +47,40 @@ namespace 专家费用管理
         }
         private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {//保存
-            if (tabPane1.SelectedPage.Name == "tabNavigationPage2")
+            try
             {
-            }
-            else if (tabPane1.SelectedPage.Name == "tabNavigationPage3")
-            {
-            }
-            else if (tabPane1.SelectedPage.Name == "tabNavigationPage1")
-            {
-                var newProfessor = register1.Save();
-                historyData1.RefreshData();
-                if (newProfessor.Count > 0)
+                if (tabPane1.SelectedPage.Name == "tabNavigationPage2")
                 {
-                    professorDatabase1.InsertData(newProfessor);
+                }
+                else if (tabPane1.SelectedPage.Name == "tabNavigationPage3")
+                {
+                }
+                else if (tabPane1.SelectedPage.Name == "tabNavigationPage1")
+                {
+                    var newProfessor = register1.Save();
+                    historyData1.RefreshData();
+                    if (newProfessor.Count > 0)
+                    {
+                        professorDatabase1.InsertData(newProfessor);
+                    }
                 }
             }
-            
+            catch (Exception ex)
+            {
+                new WinformCommon.ErrorForm(ex.Message, ex.StackTrace).ShowDialog();
+            }
         }
 
         private void barButtonItem6_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {//查询
-            historyData1.SearchData(barEditItem1.EditValue.ToString().Substring(0, barEditItem1.EditValue.ToString().Length - 1), barEditItem2.EditValue.ToString().Substring(0, barEditItem2.EditValue.ToString().Length - 1));
+            try
+            {
+                historyData1.SearchData(barEditItem1.EditValue.ToString().Substring(0, barEditItem1.EditValue.ToString().Length - 1), barEditItem2.EditValue.ToString().Substring(0, barEditItem2.EditValue.ToString().Length - 1));
+            }
+            catch (Exception ex)
+            {
+                new WinformCommon.ErrorForm(ex.Message, ex.StackTrace).ShowDialog();
+            }
         }
 
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -76,25 +90,39 @@ namespace 专家费用管理
 
         private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {//导出到excel
-            if (tabPane1.SelectedPage.Name == "tabNavigationPage2")
+            try
             {
-                historyData1.Export();
+                if (tabPane1.SelectedPage.Name == "tabNavigationPage2")
+                {
+                    historyData1.Export();
+                }
+            }
+            catch (Exception ex)
+            {
+                new WinformCommon.ErrorForm(ex.Message, ex.StackTrace).ShowDialog();
             }
         }
 
         private void barButtonItem5_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {//刷新
-            if (tabPane1.SelectedPage.Name == "tabNavigationPage2")
+            try
             {
-                historyData1.RefreshData();
+                if (tabPane1.SelectedPage.Name == "tabNavigationPage2")
+                {
+                    historyData1.RefreshData();
+                }
+                else if (tabPane1.SelectedPage.Name == "tabNavigationPage3")
+                {
+                    professorDatabase1.RefreshData();
+                }
+                else if (tabPane1.SelectedPage.Name == "tabNavigationPage1")
+                {
+                    register1.RefreshData();
+                }
             }
-            else if (tabPane1.SelectedPage.Name == "tabNavigationPage3")
+            catch (Exception ex)
             {
-                professorDatabase1.RefreshData();
-            }
-            else if (tabPane1.SelectedPage.Name == "tabNavigationPage1")
-            {
-                register1.RefreshData();
+                new WinformCommon.ErrorForm(ex.Message, ex.StackTrace).ShowDialog();
             }
         }
 

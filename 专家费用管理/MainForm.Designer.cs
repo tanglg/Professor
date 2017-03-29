@@ -485,7 +485,6 @@
             this.tabPane1.Size = new System.Drawing.Size(1103, 671);
             this.tabPane1.TabIndex = 4;
             this.tabPane1.Text = "tabPane1";
-            this.tabPane1.SelectedPageChanging += new DevExpress.XtraBars.Navigation.SelectedPageChangingEventHandler(this.tabPane1_SelectedPageChanging);
             // 
             // tabNavigationPage1
             // 

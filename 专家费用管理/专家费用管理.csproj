@@ -102,6 +102,9 @@
     <Reference Include="DevExpress.XtraTreeList.v16.2, Version=16.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
+    <Reference Include="DevexpressCN">
+      <HintPath>C:\Users\Administrator\Source\Repos\ZbTbTools\DevexpressCN\bin\Debug\DevexpressCN.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -112,6 +115,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WinformCommon">
+      <HintPath>C:\Users\Administrator\Source\Repos\ZbTbTools\WinformCommon\bin\Debug\WinformCommon.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExcelCommonFunction.cs" />
