@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using DevExpress.XtraSpreadsheet;
 
 namespace 专家费用管理
 {
@@ -17,6 +18,7 @@ namespace 专家费用管理
         {
             InitializeComponent();
 
+            spreadsheetControl1.Options.Behavior.Worksheet.Insert = DocumentCapability.Hidden;
             InitHistoryData();
             YearList = GetExistYearList();
         }
@@ -78,6 +80,11 @@ namespace 专家费用管理
             
             list.OrderByDescending(o => o);
             return list;
+        }
+
+        private void spreadsheetControl1_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+        {
+            e.Menu.Items.Clear();
         }
     }
 }

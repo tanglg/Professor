@@ -39,6 +39,7 @@
             this.spreadsheetControl1.Size = new System.Drawing.Size(918, 656);
             this.spreadsheetControl1.TabIndex = 0;
             this.spreadsheetControl1.Text = "spreadsheetControl1";
+            this.spreadsheetControl1.PopupMenuShowing += new DevExpress.XtraSpreadsheet.PopupMenuShowingEventHandler(this.spreadsheetControl1_PopupMenuShowing);
             this.spreadsheetControl1.CustomCellEdit += new DevExpress.XtraSpreadsheet.SpreadsheetCustomCellEditEventHandler(this.spreadsheetControl1_CustomCellEdit);
             this.spreadsheetControl1.SelectionChanged += new System.EventHandler(this.spreadsheetControl1_SelectionChanged);
             // 

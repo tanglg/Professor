@@ -97,5 +97,49 @@ namespace 专家费用管理
                 register1.RefreshData();
             }
         }
+
+        private void barButtonItem10_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {//菜单退出
+            barButtonItem1_ItemClick(null, null);
+        }
+
+        private void barButtonItem7_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {//菜单-文件-登记
+            tabPane1.SelectedPage = tabNavigationPage1;
+        }
+
+        private void barButtonItem8_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {//菜单-文件-历史记录
+            tabPane1.SelectedPage = tabNavigationPage2;
+        }
+
+        private void barButtonItem9_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {//菜单-文件-专家库维护
+            tabPane1.SelectedPage = tabNavigationPage3;
+        }
+
+        private void barButtonItem11_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {//菜单-编辑-保存
+            barButtonItem3_ItemClick(null,null);
+        }
+
+        private void barButtonItem12_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {//菜单-编辑-查询
+            barButtonItem6_ItemClick(null, null);
+        }
+
+        private void barButtonItem14_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {//菜单-编辑-导出
+            barButtonItem4_ItemClick(null, null);
+        }
+
+        private void barButtonItem15_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {//菜单-工具-计算器
+            var filePath = System.IO.Path.Combine(Application.StartupPath, "calc.exe");
+            if (System.IO.File.Exists(filePath))
+            {
+                System.Diagnostics.Process.Start(filePath);
+            }
+        }
     }
 }

@@ -39,6 +39,7 @@
             this.spreadsheetControl1.Size = new System.Drawing.Size(1018, 634);
             this.spreadsheetControl1.TabIndex = 0;
             this.spreadsheetControl1.Text = "spreadsheetControl1";
+            this.spreadsheetControl1.PopupMenuShowing += new DevExpress.XtraSpreadsheet.PopupMenuShowingEventHandler(this.spreadsheetControl1_PopupMenuShowing);
             // 
             // HistoryData
             // 

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using System.IO;
+using DevExpress.XtraSpreadsheet;
 
 namespace 专家费用管理
 {
@@ -16,6 +17,8 @@ namespace 专家费用管理
         public ProfessorDatabase()
         {
             InitializeComponent();
+
+            spreadsheetControl1.Options.Behavior.Worksheet.Insert = DocumentCapability.Hidden;
 
             InitProfessorData();
 
@@ -63,6 +66,11 @@ namespace 专家费用管理
                 professor.CardNumber = spreadsheetControl1.ActiveWorksheet.GetCellValue(0, rowIndex).ToString();
                 UI.Professors.Add(professor);
             }
+        }
+
+        private void spreadsheetControl1_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+        {
+            e.Menu.Items.Clear();
         }
     }
 }

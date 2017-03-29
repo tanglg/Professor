@@ -24,6 +24,8 @@ namespace 专家费用管理
         public Register()
         {
             InitializeComponent();
+
+            spreadsheetControl1.Options.Behavior.Worksheet.Insert = DocumentCapability.Hidden;
         }
         private void InitRegisterTemplate()
         {
@@ -147,6 +149,11 @@ namespace 专家费用管理
         {
             if (!IsCurrentColumnPoP(spreadsheetControl1.ActiveCell.ColumnIndex, spreadsheetControl1.ActiveCell.RowIndex)) return;
             spreadsheetControl1.OpenCellEditor(DevExpress.XtraSpreadsheet.CellEditorMode.Edit);
+        }
+
+        private void spreadsheetControl1_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+        {
+            e.Menu.Items.Clear();
         }
     }
 }
