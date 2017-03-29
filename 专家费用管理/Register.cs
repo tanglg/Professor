@@ -86,7 +86,7 @@ namespace 专家费用管理
                 //月
                 workbook.Worksheets[0].Cells[2, 6].SetValueFromText(month.ToString());
 
-                if (UI.Professors.Any(o => o.CardNumber.Trim().ToUpper() != spreadsheetControl1.ActiveWorksheet.GetCellValue(0, rowIndex).ToString().Trim().ToUpper()))
+                if (!UI.Professors.Any(o => o.CardNumber.Trim().ToUpper() == spreadsheetControl1.ActiveWorksheet.GetCellValue(0, rowIndex).ToString().Trim().ToUpper()))
                 {
                     var fo = new Professor();
                     fo.CardNumber = spreadsheetControl1.ActiveWorksheet.GetCellValue(0, rowIndex).ToString();
@@ -94,6 +94,7 @@ namespace 专家费用管理
                     fo.PhoneNumber = spreadsheetControl1.ActiveWorksheet.GetCellValue(2, rowIndex).ToString();
 
                     newProfessorList.Add(fo);
+                    UI.Professors.Add(fo);
                 }
             }
 

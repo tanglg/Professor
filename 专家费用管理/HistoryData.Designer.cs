@@ -36,6 +36,7 @@
             this.spreadsheetControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.spreadsheetControl1.Location = new System.Drawing.Point(0, 0);
             this.spreadsheetControl1.Name = "spreadsheetControl1";
+            this.spreadsheetControl1.ReadOnly = true;
             this.spreadsheetControl1.Size = new System.Drawing.Size(1018, 634);
             this.spreadsheetControl1.TabIndex = 0;
             this.spreadsheetControl1.Text = "spreadsheetControl1";
