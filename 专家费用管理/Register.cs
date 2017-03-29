@@ -146,7 +146,7 @@ namespace 专家费用管理
         private void spreadsheetControl1_SelectionChanged(object sender, EventArgs e)
         {
             if (!IsCurrentColumnPoP(spreadsheetControl1.ActiveCell.ColumnIndex, spreadsheetControl1.ActiveCell.RowIndex)) return;
-            spreadsheetControl1.OpenCellEditor(DevExpress.XtraSpreadsheet.CellEditorMode.Edit);
+            spreadsheetControl1.OpenCellEditor(DevExpress.XtraSpreadsheet.CellEditorMode.Enter);
         }
 
         private void spreadsheetControl1_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)

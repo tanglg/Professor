@@ -26,7 +26,7 @@ namespace 专家费用管理
         {
             var save = new SaveFileDialog();
             save.Filter = "Excel(2007或更高)|*.xlsx";
-            save.FileName = DateTime.Today.ToString("yyyyMMdd")+"导出文件";
+            save.FileName = DateTime.Today.ToString("yyyyMMdd")+"历史数据";
             if (save.ShowDialog() != DialogResult.OK) return;
             spreadsheetControl1.Document.SaveDocument(save.FileName, DevExpress.Spreadsheet.DocumentFormat.Xlsx);
         }

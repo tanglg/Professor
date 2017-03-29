@@ -14,6 +14,8 @@ namespace 专家费用管理
         public SplashScreen1()
         {
             InitializeComponent();
+
+            labelControl1.Text = string.Format("Copyright © 2016-{0}",DateTime.Today.Year);
         }
 
         #region Overrides

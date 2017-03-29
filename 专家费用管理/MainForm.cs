@@ -57,16 +57,19 @@ namespace 专家费用管理
                 }
                 else if (tabPane1.SelectedPage.Name == "tabNavigationPage1")
                 {
+                    DevExpress.XtraSplashScreen.SplashScreenManager.ShowForm(this, typeof(WaitForm1), true, true, false);
                     var newProfessor = register1.Save();
                     historyData1.RefreshData();
                     if (newProfessor.Count > 0)
                     {
                         professorDatabase1.InsertData(newProfessor);
                     }
+                    DevExpress.XtraSplashScreen.SplashScreenManager.CloseForm(false);
                 }
             }
             catch (Exception ex)
             {
+                DevExpress.XtraSplashScreen.SplashScreenManager.CloseForm(false);
                 new WinformCommon.ErrorForm(ex.Message, ex.StackTrace).ShowDialog();
             }
         }
@@ -75,10 +78,14 @@ namespace 专家费用管理
         {//查询
             try
             {
+                DevExpress.XtraSplashScreen.SplashScreenManager.ShowForm(this, typeof(WaitForm1), true, true, false);
+                tabPane1.SelectedPage = tabNavigationPage2;
                 historyData1.SearchData(barEditItem1.EditValue.ToString().Substring(0, barEditItem1.EditValue.ToString().Length - 1), barEditItem2.EditValue.ToString().Substring(0, barEditItem2.EditValue.ToString().Length - 1));
+                DevExpress.XtraSplashScreen.SplashScreenManager.CloseForm(false);
             }
             catch (Exception ex)
             {
+                DevExpress.XtraSplashScreen.SplashScreenManager.CloseForm(false);
                 new WinformCommon.ErrorForm(ex.Message, ex.StackTrace).ShowDialog();
             }
         }
@@ -92,10 +99,8 @@ namespace 专家费用管理
         {//导出到excel
             try
             {
-                if (tabPane1.SelectedPage.Name == "tabNavigationPage2")
-                {
-                    historyData1.Export();
-                }
+                tabPane1.SelectedPage = tabNavigationPage2;
+                historyData1.Export();
             }
             catch (Exception ex)
             {
@@ -107,6 +112,7 @@ namespace 专家费用管理
         {//刷新
             try
             {
+                DevExpress.XtraSplashScreen.SplashScreenManager.ShowForm(this, typeof(WaitForm1), true, true, false);
                 if (tabPane1.SelectedPage.Name == "tabNavigationPage2")
                 {
                     historyData1.RefreshData();
@@ -119,9 +125,11 @@ namespace 专家费用管理
                 {
                     register1.RefreshData();
                 }
+                DevExpress.XtraSplashScreen.SplashScreenManager.CloseForm(false);
             }
             catch (Exception ex)
             {
+                DevExpress.XtraSplashScreen.SplashScreenManager.CloseForm(false);
                 new WinformCommon.ErrorForm(ex.Message, ex.StackTrace).ShowDialog();
             }
         }
@@ -180,6 +188,11 @@ namespace 专家费用管理
             {
                 new WinformCommon.ErrorForm(ex.Message, ex.StackTrace).ShowDialog();
             }
+        }
+
+        private void barButtonItem16_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {//菜单-帮助-关于
+            new About().ShowDialog();
         }
     }
 }
