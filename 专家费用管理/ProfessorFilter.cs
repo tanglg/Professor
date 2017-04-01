@@ -30,12 +30,12 @@ namespace 专家费用管理
         private void listBoxControl1_DoubleClick(object sender, EventArgs e)
         {
             SelectProfessor((Professor)listBoxControl1.SelectedItem);
-            textEdit1.Text = string.Empty;
+            //textEdit1.Text = string.Empty;
         }
 
         private void textEdit1_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
         {
-            listBoxControl1.DataSource = UI.Professors.FindAll(o=>o.CardNumber.Contains(textEdit1.Text));
+            //listBoxControl1.DataSource = UI.Professors.FindAll(o=>o.CardNumber.Contains(textEdit1.Text));
         }
 
         private void textEdit1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -52,7 +52,7 @@ namespace 专家费用管理
             if (e.KeyCode == Keys.Enter)
             {
                 SelectProfessor((Professor)listBoxControl1.SelectedItem);
-                textEdit1.Text = string.Empty;
+                //textEdit1.Text = string.Empty;
             }
         }
     }

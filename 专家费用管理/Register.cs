@@ -27,7 +27,7 @@ namespace 专家费用管理
 
             spreadsheetControl1.Options.Behavior.Worksheet.Insert = DocumentCapability.Hidden;
         }
-        private void InitRegisterTemplate()
+        public void InitRegisterTemplate()
         {
             if (File.Exists(UI.RegisterTemplateFilePath))
             {
@@ -125,7 +125,7 @@ namespace 专家费用管理
             _popContainer.PopupControl = popupControl;
             _popContainer.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
         }
-        private void GetProfessor(Professor pf)
+        public void GetProfessor(Professor pf)
         {
             spreadsheetControl1.CloseCellEditor(CellEditorEnterValueMode.ActiveCell);
             spreadsheetControl1.Document.Worksheets[0].Cells[spreadsheetControl1.ActiveCell.RowIndex, spreadsheetControl1.ActiveCell.ColumnIndex ].SetValueFromText(pf.CardNumber);
@@ -139,6 +139,7 @@ namespace 专家费用管理
         }
         private void spreadsheetControl1_CustomCellEdit(object sender, DevExpress.XtraSpreadsheet.SpreadsheetCustomCellEditEventArgs e)
         {
+            return;
             if (!IsCurrentColumnPoP(e.ColumnIndex,e.RowIndex)) return;//仅处理身份证号列
             
             e.RepositoryItem = _popContainer;
@@ -146,6 +147,7 @@ namespace 专家费用管理
 
         private void spreadsheetControl1_SelectionChanged(object sender, EventArgs e)
         {
+            return;
             if (!IsCurrentColumnPoP(spreadsheetControl1.ActiveCell.ColumnIndex, spreadsheetControl1.ActiveCell.RowIndex)) return;
             spreadsheetControl1.OpenCellEditor(DevExpress.XtraSpreadsheet.CellEditorMode.Edit);
         }

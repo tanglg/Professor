@@ -22,12 +22,14 @@ namespace 专家费用管理
                 InitMonthFilter();
                 InitYearFilter();
                 tabPane1.SelectedPage = tabNavigationPage1;
+                listBoxControl1.Visible = false;
             }
             catch (Exception ex)
             {
                 new WinformCommon.ErrorForm(ex.Message, ex.StackTrace).ShowDialog();
             }
         }
+        
         private void InitYearFilter()
         {
             if (historyData1.YearList == null || historyData1.YearList.Count == 0) return;
@@ -64,6 +66,7 @@ namespace 专家费用管理
                     {
                         professorDatabase1.InsertData(newProfessor);
                     }
+                    register1.InitRegisterTemplate();
                     DevExpress.XtraSplashScreen.SplashScreenManager.CloseForm(false);
                 }
             }
@@ -193,6 +196,99 @@ namespace 专家费用管理
         private void barButtonItem16_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {//菜单-帮助-关于
             new About().ShowDialog();
+        }
+
+        private void textEdit1_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
+        {//过滤专家
+            FilterProfessor(textEdit1.Text);
+        }
+        private void FilterProfessor(string filter)
+        {
+            try
+            {
+                SuspendLayout();
+                listBoxControl1.Visible = true;
+                listBoxControl1.DataSource = UI.Professors.FindAll(o => o.CardNumber.Contains(textEdit1.Text) || o.Name.Contains(filter));
+                ResumeLayout();
+            }
+            catch (Exception ex)
+            {
+                new WinformCommon.ErrorForm(ex.Message, ex.StackTrace).ShowDialog();
+            }
+        }
+
+        private void textEdit1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+            {
+                listBoxControl1.Focus();
+                listBoxControl1.SelectedIndex = 0;
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                listBoxControl1.Visible = false;
+            }
+            else if (e.KeyCode == Keys.Enter)
+            {
+                SetProfessorToExcel();
+            }
+        }
+
+        private void listBoxControl1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SetProfessorToExcel();
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                listBoxControl1.Visible = false;
+            }
+        }
+
+        private void listBoxControl1_DoubleClick(object sender, EventArgs e)
+        {
+            SetProfessorToExcel();
+        }
+        private void SetProfessorToExcel()
+        {
+            try
+            {
+                register1.GetProfessor((Professor)listBoxControl1.SelectedItem);
+                textEdit1.Text = string.Empty;
+                listBoxControl1.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                new WinformCommon.ErrorForm(ex.Message, ex.StackTrace).ShowDialog();
+            }
+        }
+        private void textEdit1_Leave(object sender, EventArgs e)
+        {
+            //listBoxControl1.Visible = false;
+        }
+
+        private void groupControl1_Click(object sender, EventArgs e)
+        {
+            listBoxControl1.Visible = false;
+        }
+
+        private void labelControl1_Click(object sender, EventArgs e)
+        {
+            listBoxControl1.Visible = false;
+        }
+
+        private void tabPane1_SelectedPageChanged(object sender, DevExpress.XtraBars.Navigation.SelectedPageChangedEventArgs e)
+        {
+            if (e.Page == tabNavigationPage1)
+            {
+                textEdit1.Focus();
+            }
+        }
+
+        private void barDockControlTop_Click(object sender, EventArgs e)
+        {
+            listBoxControl1.Visible = false;
         }
     }
 }
