@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace 专家费用管理
 {
@@ -230,7 +231,27 @@ namespace 专家费用管理
             }
             else if (e.KeyCode == Keys.Enter)
             {
-                SetProfessorToExcel();
+                //在文本框中敲回车时
+                if (((List<Professor>)listBoxControl1.DataSource ).Count > 0)
+                {
+                    SetProfessorToExcel();
+                }
+                else
+                {
+                    if (!string.IsNullOrEmpty(textEdit1.Text))
+                    {
+                        var pro = new Professor();
+                        if (Regex.IsMatch(textEdit1.Text, @"\A\d+[X|x]?\z", RegexOptions.Multiline))
+                        { //数字则认为是身份证号
+                            pro.CardNumber = textEdit1.Text;
+                        }
+                        else
+                        {//其他认为是姓名
+                            pro.Name = textEdit1.Text;
+                        }
+                        SetProfessorToExcel(pro);
+                    }
+                }
             }
         }
 
@@ -244,6 +265,13 @@ namespace 专家费用管理
             {
                 listBoxControl1.Visible = false;
             }
+            else if (e.KeyCode == Keys.Up)
+            {
+                if (listBoxControl1.SelectedIndex == 0)
+                {
+                    textEdit1.Focus();
+                }
+            }
         }
 
         private void listBoxControl1_DoubleClick(object sender, EventArgs e)
@@ -252,9 +280,14 @@ namespace 专家费用管理
         }
         private void SetProfessorToExcel()
         {
+            SetProfessorToExcel((Professor)listBoxControl1.SelectedItem);
+            
+        }
+        private void SetProfessorToExcel(Professor professor)
+        {
             try
             {
-                register1.GetProfessor((Professor)listBoxControl1.SelectedItem);
+                register1.SetProfessor(professor);
                 textEdit1.Text = string.Empty;
                 listBoxControl1.Visible = false;
             }

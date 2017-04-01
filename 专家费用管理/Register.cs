@@ -118,14 +118,14 @@ namespace 专家费用管理
 
             _popContainer.PopupFormSize = new System.Drawing.Size(180, 300);
             PopupContainerControl popupControl = new PopupContainerControl();
-            _filter.SelectProfessor = GetProfessor;
+            _filter.SelectProfessor = SetProfessor;
             _filter.Dock = DockStyle.Fill;
             popupControl.Controls.Add(_filter);
 
             _popContainer.PopupControl = popupControl;
             _popContainer.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
         }
-        public void GetProfessor(Professor pf)
+        public void SetProfessor(Professor pf)
         {
             spreadsheetControl1.CloseCellEditor(CellEditorEnterValueMode.ActiveCell);
             spreadsheetControl1.Document.Worksheets[0].Cells[spreadsheetControl1.ActiveCell.RowIndex, spreadsheetControl1.ActiveCell.ColumnIndex ].SetValueFromText(pf.CardNumber);
